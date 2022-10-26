@@ -258,9 +258,6 @@ const getProductDetailsById = async function (req, res) {
         let productId = req.params.productId
 
         //validation of productID
-        if (!productId)
-            return res.status
-                .send({ status: false, message: "Not a valid Product Id" })
 
         if (!isValidObjectId(productId))
             return res.status(400)

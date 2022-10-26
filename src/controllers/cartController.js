@@ -139,10 +139,6 @@ const updateCart = async function (req, res) {
         let data = req.body
         let userId = req.params.userId
 
-        if (!userId)
-            return res.status(400)
-                .send({ status: false, message: "Please Provide userId in the path Params" })
-
         if (!isValidObjectId(userId))
             return res.status(400)
                 .send({ status: false, msg: "userId is not valid" })
@@ -295,7 +291,7 @@ const deleteCart = async function (req, res) {
 
         const findCart = await cartModel.findOne({ userId: userId })
         if (!findCart)
-            return res.status(400).send({ status: false, message: "Cart is not found for this user" });
+            return res.status(404).send({ status: false, message: "Cart is not found for this user" });
 
         const removeCart = await cartModel.findOneAndUpdate({ userId }, { $set: { items: [], totalItems: 0, totalPrice: 0 } }, { new: true })
 

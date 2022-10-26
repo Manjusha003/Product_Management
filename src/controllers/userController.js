@@ -282,10 +282,6 @@ const getUserDetails = async function (req, res) {
     try {
         let userId = req.params.userId
         // validation of userId
-        if (!userId)
-            return res.status
-                .send({ status: false, message: "Please Provide userId in the path params" })
-
         if (!isValidObjectId(userId))
             return res.status(400)
                 .send({ status: false, message: "UserId  Invalid" })
@@ -316,10 +312,7 @@ const updateUser = async function (req, res) {
         let files = req.files
 
         // userId validation
-        if (!userId)
-            return res.status(400)
-                .send({ status: false, message: "Please Provide userId in the path Params" })
-
+      
         if (!isValidObjectId(userId))
             return res.status(400)
                 .send({ status: false, message: "UserId is not valid" })
